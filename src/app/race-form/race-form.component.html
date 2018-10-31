@@ -1,0 +1,16 @@
+<h1>Ajouter une nouvelle course</h1>
+<form (ngSubmit)="onSubmit()">
+  <div>
+      Lieu : <input type="text" id="location" name="location" required [(ngModel)]="model.location">
+  </div>
+  <div>
+      Date : <input type="date" id="date" name="date" required [(ngModel)]="model.date">
+  </div>
+  <div *ngFor="let p of listPoneys">
+  <label>
+    {{p.name}}
+  <input type="checkbox" id="p.id" name="p.name" value="p.id" [(ngModel)]="ponySelected[p.id]">
+</label>
+</div>  
+<button type="submit">Valider</button>
+</form>

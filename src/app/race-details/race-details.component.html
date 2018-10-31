@@ -1,0 +1,8 @@
+ <p> #{{race.id}} : {{race.location}} / le {{race.date | date:"dd/MM/yyyy"}} / 
+  Participants :</p>
+  <ul *ngIf="race.ponies.length >0">
+    <li *ngFor="let pa of race.ponies">
+      {{pa.name}}
+    </li>
+  </ul>
+

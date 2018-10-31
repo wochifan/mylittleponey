@@ -1,0 +1,8 @@
+<h2>Les courses</h2>
+
+<p *ngIf="races.length == 0">Pas de courses actuellement</p>
+<ul *ngIf="races.length > 0">
+  <li *ngFor="let r of races">
+    <app-race-details [race]="r"></app-race-details>
+  </li>
+</ul>
