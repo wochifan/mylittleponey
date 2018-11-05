@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class PonyReactiveFormComponent implements OnInit {
 
   ponyForm = this.fb.group({
-    name: ['nom', Validators.required, Validators.maxLength],
+    name: ['nom', Validators.required],
     age: ['0', Validators.required],
     color: ['blanc', Validators.required],
     weight: ['0', Validators.required],

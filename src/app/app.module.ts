@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: '', component: RacesComponent},
   {path: 'Ponies', component: PoniesComponent},
   {path: 'addPony', component: PonyReactiveFormComponent},
-  {path: 'addRace', component: RaceFormComponent}
+  {path: 'addRace', component: RaceReactiveFormComponent}
 ];
 
 @NgModule({

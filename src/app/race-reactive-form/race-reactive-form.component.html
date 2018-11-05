@@ -1,3 +1,23 @@
-<p>
-  race-reactive-form works!
-</p>
+<h1>Ajouter une nouvelle course</h1>
+<form [formGroup]="raceForm" (ngSubmit)="onSubmit()">
+  <div>
+      Lieu : <input type="text" id="location" name="location" formControlName="location">
+  </div>
+  <div>
+    <ngb-datepicker #dp formControlName="date"></ngb-datepicker>
+  </div>
+
+  <p-pickList [source]="listPoneys" [target]="selectedPonies" [responsive]="true" dragdrop="true">
+    <ng-template let-pony pTemplate="listPoneys">
+        <div class="ui-helper-clearfix">
+              {{pony.name}} 
+        </div>
+
+    </ng-template>
+</p-pickList>
+
+Valeurs : {{ raceForm.value }}
+Statut : {{ raceForm.status }}
+
+<button type="submit">Valider</button>
+</form>
