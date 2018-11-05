@@ -10,8 +10,10 @@ import { PonyService } from '../pony.service';
   templateUrl: './race-form.component.html',
   styleUrls: ['./race-form.component.css']
 })
+
 export class RaceFormComponent implements OnInit {
   model: Race;
+  dateModel;
   listPoneys: Array<Pony>
   ponySelected: Array<boolean>;
   constructor(private service: RaceService,
@@ -19,18 +21,13 @@ export class RaceFormComponent implements OnInit {
               private servicePonies: PonyService) {
     this.model = new Race();
     servicePonies.getAllPonies().subscribe(p => this.listPoneys = p);
-    this.ponySelected = [];
    }
 
   ngOnInit() {
   }
   onSubmit(){
-    this.ponySelected.forEach((e, i) => {
-    if(e === true) {
-      this.model.ponies.push(this.listPoneys[i]);
-    }})
+    this.model.date = new Date(this.dateModel.year, this.dateModel.month -1, this.dateModel.day);
     this.service.addRace(this.model);
-    this.router.navigate(['']);
+    this.router.navigate(['/']);
   }
-
 }

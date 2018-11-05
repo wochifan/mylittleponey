@@ -4,13 +4,16 @@
       Lieu : <input type="text" id="location" name="location" required [(ngModel)]="model.location">
   </div>
   <div>
-      Date : <input type="date" id="date" name="date" required [(ngModel)]="model.date">
+    <ngb-datepicker required #dp [(ngModel)]="dateModel" [ngModelOptions]="{standalone: true}"></ngb-datepicker>
   </div>
-  <div *ngFor="let p of listPoneys">
-  <label>
-    {{p.name}}
-  <input type="checkbox" id="p.id" name="p.name" value="p.id" [(ngModel)]="ponySelected[p.id]">
-</label>
-</div>  
+
+  <p-pickList [source]="ponies" [target]="model.ponies" [responsive]="true" dragdrop="true" dragdropScope="ponies">
+    <ng-template let-pony pTemplate="item">
+        <div class="ui-helper-clearfix">
+            {{pony.name}}
+        </div>
+    </ng-template>
+</p-pickList>
+
 <button type="submit">Valider</button>
 </form>

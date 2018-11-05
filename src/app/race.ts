@@ -9,7 +9,7 @@ export class Race {
     constructor(location?: string, date?: Date){
         this.id = 0;
         this.ponies = [];
-        this.location = location;
-        this.date = date;
+        this.location = location === undefined ? '' : location;
+        this.date = date === undefined ? new Date() : date;
     }
 }
