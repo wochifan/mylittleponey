@@ -4,5 +4,6 @@
 <ul *ngIf="races.length > 0">
   <li *ngFor="let r of races">
     <app-race-details [race]="r"></app-race-details>
+    <a routerLink="/race/{{r.id}}">Afficher</a>
   </li>
 </ul>

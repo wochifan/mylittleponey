@@ -23,6 +23,7 @@ import { RaceReactiveFormComponent } from './race-reactive-form/race-reactive-fo
 
 import { HttpClientModule } from '@angular/common/http';
 import { PonyComponent } from './pony/pony.component'
+import { RaceComponent } from './race/race.component';
 
 
 
@@ -32,7 +33,8 @@ const routes: Routes = [
   {path: 'Ponies', component: PoniesComponent},
   {path: 'addPony', component: PonyReactiveFormComponent},
   {path: 'addRace', component: RaceReactiveFormComponent},
-  {path: 'pony/:id', component: PonyComponent}
+  {path: 'pony/:id', component: PonyComponent},
+  {path: 'race/:id', component: RaceComponent}
 ];
 
 @NgModule({
@@ -46,7 +48,8 @@ const routes: Routes = [
     RaceFormComponent,
     PonyReactiveFormComponent,
     RaceReactiveFormComponent,
-    PonyComponent
+    PonyComponent,
+    RaceComponent
   ],
   imports: [
     BrowserModule,
