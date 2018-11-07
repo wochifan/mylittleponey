@@ -28,4 +28,7 @@ export class PonyService {
      this.http.post(this.url + '/create', pony, this.httpOptions).subscribe(() => this.router.navigate(['/Ponies']));
   ;
    }
+   getPony(id: number): Observable<Pony> {
+     return this.http.get<Pony>(this.url + '/' + id, this.httpOptions)
+   }
 }

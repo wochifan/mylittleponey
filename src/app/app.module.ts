@@ -21,7 +21,8 @@ import {PickListModule} from 'primeng/picklist';
 import {StepsModule} from 'primeng/steps';
 import { RaceReactiveFormComponent } from './race-reactive-form/race-reactive-form.component';
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { PonyComponent } from './pony/pony.component'
 
 
 
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: '', component: RacesComponent},
   {path: 'Ponies', component: PoniesComponent},
   {path: 'addPony', component: PonyReactiveFormComponent},
-  {path: 'addRace', component: RaceReactiveFormComponent}
+  {path: 'addRace', component: RaceReactiveFormComponent},
+  {path: 'pony/:id', component: PonyComponent}
 ];
 
 @NgModule({
@@ -43,7 +45,8 @@ const routes: Routes = [
     PonyFormComponent,
     RaceFormComponent,
     PonyReactiveFormComponent,
-    RaceReactiveFormComponent
+    RaceReactiveFormComponent,
+    PonyComponent
   ],
   imports: [
     BrowserModule,
