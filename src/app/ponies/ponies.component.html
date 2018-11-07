@@ -5,5 +5,6 @@
     <app-pony-details [pony]="p"></app-pony-details>
     <a routerLink="/pony/{{p.id}}">Afficher</a>
     <a routerLink="/updatePony/{{p.id}}">Modifier</a>
+    <button (click)="deletePony(p.id)">Supprimer</button>
   </li>
 </ul>

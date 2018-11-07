@@ -48,8 +48,6 @@ idPony: number;
     } else {
       this.service.updatePony(this.idPony, p);
     }
-
-
   }
 
 }

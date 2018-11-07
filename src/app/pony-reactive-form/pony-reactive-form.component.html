@@ -1,4 +1,5 @@
-<h1>Entrer un nouveau poney</h1>
+<h1 *ngIf="add">Entrer un nouveau poney</h1>
+<h1 *ngIf="!add">Modifier le poney</h1>
 <form [formGroup]="ponyForm" (ngSubmit)="onSubmit()">
   Nom <input type="text" id="name" name="name" formControlName="name">
   Couleur <input type="text" id="color" name="color" formControlName="color">
@@ -11,5 +12,5 @@
   Valeur : {{ ponyForm.value | json }}
 </p>
 <p>
-  Status : {{ ponyForm.status }}
+  Status : {{ ponyForm.status}}
 </p>
