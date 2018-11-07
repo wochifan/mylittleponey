@@ -28,6 +28,5 @@ export class RaceFormComponent implements OnInit {
   onSubmit(){
     this.model.date = new Date(this.dateModel.year, this.dateModel.month -1, this.dateModel.day);
     this.service.addRace(this.model);
-    this.router.navigate(['/']);
   }
 }

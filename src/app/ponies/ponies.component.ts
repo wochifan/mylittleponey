@@ -11,10 +11,11 @@ export class PoniesComponent implements OnInit {
   ponies: Array<Pony>;
 
   constructor(private service: PonyService) {
-    this.service.getAllPonies().subscribe(p => this.ponies = p);
+    
    }
 
   ngOnInit() {
+    this.service.getAllPonies().subscribe(p => this.ponies = p);
   }
 
 }

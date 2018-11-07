@@ -20,7 +20,6 @@ export class PonyFormComponent implements OnInit {
   }
   onSubmit() {
     this.service.addPony(this.model);
-    this.router.navigate(['/Ponies']);
   }
 
 }

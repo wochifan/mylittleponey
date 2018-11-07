@@ -18,6 +18,7 @@ export class PonyDetailsComponent implements OnInit {
 
   // Appelé à chaque rafraichissement de la page
   ngOnInit() { 
+    
   }
 
 }

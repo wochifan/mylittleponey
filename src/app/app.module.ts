@@ -21,6 +21,8 @@ import {PickListModule} from 'primeng/picklist';
 import {StepsModule} from 'primeng/steps';
 import { RaceReactiveFormComponent } from './race-reactive-form/race-reactive-form.component';
 
+import { HttpClientModule } from '@angular/common/http'
+
 
 
 
@@ -50,7 +52,8 @@ const routes: Routes = [
     NgbModule,
     PickListModule,
     StepsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
