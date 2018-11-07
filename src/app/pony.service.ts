@@ -31,4 +31,7 @@ export class PonyService {
    getPony(id: number): Observable<Pony> {
      return this.http.get<Pony>(this.url + '/' + id, this.httpOptions)
    }
+   updatePony(id: number, p:Pony): void {
+     this.http.put(this.url + '/' + id, p, this.httpOptions).subscribe(() => this.router.navigate(['/Ponies']));
+   }
 }
