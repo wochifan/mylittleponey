@@ -18,4 +18,8 @@ export class PoniesComponent implements OnInit {
     this.service.getAllPonies().subscribe(p => this.ponies = p);
   }
 
+  deletePony(id:number) {
+      this.service.deletePony(id);
+  }
+
 }

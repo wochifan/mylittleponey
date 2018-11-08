@@ -1,4 +1,5 @@
-<h1>Ajouter une nouvelle course</h1>
+<h1 *ngIf="add">Ajouter une nouvelle course</h1>
+<h1 *ngIf="!add">Modifier la course #{{idRace}}</h1>
 <form [formGroup]="raceForm" (ngSubmit)="onSubmit()">
   <div>
       Lieu : <input type="text" id="location" name="location" formControlName="location">
@@ -19,5 +20,5 @@
 Valeurs : {{ raceForm.value }}
 Statut : {{ raceForm.status }}
 
-<button type="submit">Valider</button>
+<button type="submit" [disabled]="!raceForm.valid">Valider</button>
 </form>

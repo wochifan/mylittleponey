@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RaceService } from '../race.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { PonyService } from '../pony.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Race } from '../race';
@@ -13,8 +13,11 @@ import { Pony } from '../pony';
 })
 export class RaceReactiveFormComponent implements OnInit {
 
-  listPoneys: Array<Pony>;
-  selectedPonies: Array<Pony>;
+  add: boolean;
+  listPoneys: Array<Pony> = [];
+  selectedPonies: Array<Pony> = [];
+  listPoneysTest: Array<Pony> = [];
+  idRace: number;
 
   raceForm = this.fb.group({
     location: ['nullepart', Validators.required],
@@ -25,22 +28,57 @@ export class RaceReactiveFormComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private servicePonies: PonyService,
     private router: Router,
-    private service: RaceService) {
-      this.selectedPonies = [];
-      servicePonies.getAllPonies().subscribe(p => this.listPoneys = p);
-     }
+    private service: RaceService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
+    if (this.route.snapshot.paramMap.get('id') === null) {
+      this.add = true;
 
+      this.servicePonies.getAllPonies().subscribe((p) => this.listPoneys = p);
+    } else {
+      this.add = false;
+      const id = parseInt(this.route.snapshot.paramMap.get('id'));
+      this.idRace = id;
+
+      this.service.getRace(id).subscribe(r => {
+        this.raceForm.setValue({
+          location: [r.location],
+          date: [r.date],
+          ponies: [r.ponies]
+        });
+        this.selectedPonies = r.ponies;
+
+        this.servicePonies.getAllPonies().subscribe((p) => {
+          for(let po of p)
+          {
+            for(let ps of this.selectedPonies)
+            {
+              if(ps.id !== po.id)
+              {
+                this.listPoneys.push(po);
+              }
+            }
+          }
+        });
+
+      });
+      
+    }
   }
 
   onSubmit() {
     const dateFinal = new Date(this.raceForm.value.date.year, this.raceForm.value.date.month, this.raceForm.value.date.day);
     this.raceForm.value.ponies = this.selectedPonies;
+
     const r: Race = this.raceForm.value;
     r.date = dateFinal;
-    this.service.addRace(r);
-    this.selectedPonies.forEach((x) => this.listPoneys.push(x));
+
+    if (this.add) {
+      this.service.addRace(r);
+    } else {
+      this.service.updateRace(this.idRace, r);
+    }
   }
 
 }

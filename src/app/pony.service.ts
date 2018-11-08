@@ -4,6 +4,7 @@ import { PONIES } from './ponies-mock';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { RaceService } from './race.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class PonyService {
     })
   };
 
-  constructor(private http: HttpClient, private router:Router) {
+  constructor(private http: HttpClient, private router:Router, private serviceRace: RaceService) {
 
    }
    getAllPonies(): Observable<Array<Pony>> {
@@ -35,6 +36,6 @@ export class PonyService {
      this.http.put(this.url + '/' + id, p, this.httpOptions).subscribe(() => this.router.navigate(['/Ponies']));
    }
    deletePony(id: number): void {
-     this.http.delete(this.url + '/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/Ponies']));
+     this.http.delete(this.url + '/' + id, this.httpOptions).subscribe(() => this.router.navigate(['']));
    }
 }

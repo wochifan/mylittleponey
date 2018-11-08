@@ -17,4 +17,8 @@ export class RacesComponent implements OnInit {
     this.service.getAllRaces().subscribe(r => this.races = r);
   }
 
+  deleteRace(id: number) {
+    this.service.deleteRace(id);
+  }
+
 }

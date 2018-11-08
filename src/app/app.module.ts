@@ -24,6 +24,8 @@ import { RaceReactiveFormComponent } from './race-reactive-form/race-reactive-fo
 import { HttpClientModule } from '@angular/common/http';
 import { PonyComponent } from './pony/pony.component'
 import { RaceComponent } from './race/race.component';
+import { UserFormComponent } from './user-form/user-form.component';
+import { PonyTransformPipe } from './pony-transform.pipe';
 
 
 
@@ -35,7 +37,8 @@ const routes: Routes = [
   {path: 'addRace', component: RaceReactiveFormComponent},
   {path: 'pony/:id', component: PonyComponent},
   {path: 'race/:id', component: RaceComponent},
-  {path: 'updatePony/:id', component : PonyReactiveFormComponent}
+  {path: 'updatePony/:id', component : PonyReactiveFormComponent},
+  {path: 'updateRace/:id', component : RaceReactiveFormComponent}
 ];
 
 @NgModule({
@@ -50,7 +53,9 @@ const routes: Routes = [
     PonyReactiveFormComponent,
     RaceReactiveFormComponent,
     PonyComponent,
-    RaceComponent
+    RaceComponent,
+    UserFormComponent,
+    PonyTransformPipe
   ],
   imports: [
     BrowserModule,

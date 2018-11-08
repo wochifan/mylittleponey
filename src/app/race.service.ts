@@ -29,4 +29,10 @@ export class RaceService {
   getRace(id: number): Observable<Race> {
     return this.http.get<Race>(this.url + '/' + id, this.httpOptions)
   }
+  deleteRace(id: number): void {
+    this.http.delete(this.url + '/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+  }
+  updateRace(id: number, race: Race): void {
+    this.http.put(this.url + '/' + id, race, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+  }
 }
