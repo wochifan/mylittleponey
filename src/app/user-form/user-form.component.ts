@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -14,7 +15,7 @@ export class UserFormComponent implements OnInit {
   error: string;
 
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private userService: UserService) {
     this.identifiant = sessionStorage.getItem('user');
     if (this.identifiant !== null) {
       this.connected = true;
@@ -26,14 +27,18 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.model.loging !== null && this.model.pass === "password") {
-      sessionStorage.setItem('user', this.model.loging);
-      this.identifiant = this.model.loging;
-      this.connected = true;
+    this.userService.authenticate(this.model, () => {
+      this.router.navigateByUrl('/');
+    })
 
-    } else {
-      this.error = "Mauvais identifiant";
-    }
+    // if (this.model.username !== null && this.model.password === "password") {
+    //   sessionStorage.setItem('user', this.model.loging);
+    //   this.identifiant = this.model.username;
+    //   this.connected = true;
+
+    // } else {
+    //   this.error = "Mauvais identifiant";
+    // }
 
   }
 

@@ -38,7 +38,7 @@ const routes: Routes = [
   {path: 'pony/:id', component: PonyComponent},
   {path: 'race/:id', component: RaceComponent},
   {path: 'updatePony/:id', component : PonyReactiveFormComponent},
-  {path: 'updateRace/:id', component : RaceReactiveFormComponent}
+  {path: 'updateRace/:id', component : RaceReactiveFormComponent},
 ];
 
 @NgModule({

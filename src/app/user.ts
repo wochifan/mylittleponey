@@ -1,9 +1,9 @@
 export class User {
 
-    loging: string;
-    pass: string;
+    username: string;
+    password: string;
 
-    constructor(loging?: string) {
-        this.loging = loging === undefined ? null : loging;
+    constructor(username?: string) {
+        this.username = username === undefined ? null : username;
     }
 }
