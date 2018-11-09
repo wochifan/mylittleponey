@@ -26,6 +26,7 @@ export class RaceService {
   addRace(race: Race):void{
     this.http.post(this.url + '/create', race, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
+
   getRace(id: number): Observable<Race> {
     return this.http.get<Race>(this.url + '/' + id, this.httpOptions)
   }

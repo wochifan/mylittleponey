@@ -5,6 +5,7 @@ import { PonyService } from '../pony.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Race } from '../race';
 import { Pony } from '../pony';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-race-reactive-form',
@@ -21,7 +22,7 @@ export class RaceReactiveFormComponent implements OnInit {
 
   raceForm = this.fb.group({
     location: ['nullepart', Validators.required],
-    date: [new Date()],
+    date: new NgbDate(2018,10,10),
     ponies: [null],
   })
 
@@ -68,11 +69,17 @@ export class RaceReactiveFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const dateFinal = new Date(this.raceForm.value.date.year, this.raceForm.value.date.month, this.raceForm.value.date.day);
+
     this.raceForm.value.ponies = this.selectedPonies;
 
-    const r: Race = this.raceForm.value;
-    r.date = dateFinal;
+    let r: Race = new Race();
+    r.id = this.idRace;
+    r.location = this.raceForm.value.location;
+    r.date = new Date(this.raceForm.value.date.year, this.raceForm.value.date.month, this.raceForm.value.date.day);
+    r.ponies = this.raceForm.value.ponies;
+
+
+    console.log(r);
 
     if (this.add) {
       this.service.addRace(r);

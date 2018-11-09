@@ -9,16 +9,27 @@ import { RaceService } from '../race.service';
 })
 export class RacesComponent implements OnInit {
   races: Array<Race> = [];
+  votes: Array<number> = new Array<number>();
   
   constructor(private service: RaceService) {
   }
 
   ngOnInit() {
-    this.service.getAllRaces().subscribe(r => this.races = r);
+    this.service.getAllRaces().subscribe(r => {
+      this.races = r;
+      for (const i in this.races) {
+        this.votes.push(0);
+      }
+    });
   }
 
   deleteRace(id: number) {
     this.service.deleteRace(id);
+  }
+
+  onClickParent(race: Race) {
+    const index = this.races.indexOf(race);
+    this.votes[index] += 1;
   }
 
 }

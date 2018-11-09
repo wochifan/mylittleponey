@@ -2,8 +2,10 @@
 
 <p *ngIf="races.length == 0">Pas de courses actuellement</p>
 <ul *ngIf="races.length > 0">
-  <li *ngFor="let r of races">
-    <app-race-details [race]="r"></app-race-details>
+  <li *ngFor="let r of races; let i = index;">
+    <span>Votes: {{votes[i]}} </span>
+    <br>
+    <app-race-details [race]="r" (onClick)="onClickParent($event)"></app-race-details>
     <a routerLink="/race/{{r.id}}">Afficher</a>
     <a routerLink="/updateRace/{{r.id}}">Modifier</a>
     <button (click)="deleteRace(r.id)">Supprimer</button>

@@ -3,6 +3,7 @@
   <ul *ngIf="race.ponies.length >0">
     <li *ngFor="let pa of race.ponies">
       {{pa.name}}
+      <button (click)="addVote(race)">+1</button>
     </li>
   </ul>
 
