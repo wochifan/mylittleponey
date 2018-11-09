@@ -23,7 +23,7 @@ export class RaceService {
   getAllRaces(): Observable<Array<Race>> {
     return this.http.get<Array<Race>>(this.url + "/", this.httpOptions);
   }
-  addRace(race: Race):void{
+  addRace(race: Race):void {
     this.http.post(this.url + '/create', race, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 
@@ -33,7 +33,7 @@ export class RaceService {
   deleteRace(id: number): void {
     this.http.delete(this.url + '/' + id, this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
-  updateRace(id: number, race: Race): void {
-    this.http.put(this.url + '/' + id, race, this.httpOptions).subscribe(() => this.router.navigate(['/']));
+  updateRace(r: Race) {
+    this.http.put<Race>(this.url +'/' + r.id ,r,  this.httpOptions).subscribe(() => this.router.navigate(['/']));
   }
 }

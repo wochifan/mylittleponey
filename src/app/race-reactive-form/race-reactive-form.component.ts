@@ -21,10 +21,10 @@ export class RaceReactiveFormComponent implements OnInit {
   idRace: number;
 
   raceForm = this.fb.group({
-    location: ['nullepart', Validators.required],
-    date: new NgbDate(2018,10,10),
-    ponies: [null],
-  })
+    location: ['location', Validators.required],
+    date: [new NgbDate(2018, 2, 1), Validators.required],
+    ponies: Array<Pony>()
+  });
 
   constructor(private fb: FormBuilder,
     private servicePonies: PonyService,
@@ -44,9 +44,9 @@ export class RaceReactiveFormComponent implements OnInit {
 
       this.service.getRace(id).subscribe(r => {
         this.raceForm.setValue({
-          location: [r.location],
-          date: [r.date],
-          ponies: [r.ponies]
+          location: r.location,
+          date: r.date,
+          ponies: r.ponies
         });
         this.selectedPonies = r.ponies;
 
@@ -66,26 +66,25 @@ export class RaceReactiveFormComponent implements OnInit {
       });
       
     }
+
   }
 
   onSubmit() {
-
-    this.raceForm.value.ponies = this.selectedPonies;
-
-    let r: Race = new Race();
-    r.id = this.idRace;
-    r.location = this.raceForm.value.location;
-    r.date = new Date(this.raceForm.value.date.year, this.raceForm.value.date.month, this.raceForm.value.date.day);
-    r.ponies = this.raceForm.value.ponies;
-
-
-    console.log(r);
-
-    if (this.add) {
+    if(this.add)
+    {
+      this.raceForm.value.date.month -= 1; // pour corriger un bug ou c'est toujours le mois suivant qui apparait
+      const dateForm: Date = new Date(this.raceForm.value.date.year, this.raceForm.value.date.month, this.raceForm.value.date.day);
+      const r: Race = new Race(this.raceForm.value.location, dateForm);
+      r.ponies = this.selectedPonies;
       this.service.addRace(r);
-    } else {
-      this.service.updateRace(this.idRace, r);
+    }
+    else
+    {
+        let r = new Race(this.raceForm.value.location, new Date(this.raceForm.value.date.year, this.raceForm.value.date.month-1, this.raceForm.value.date.day));
+        r.id = this.idRace;
+        r.ponies = this.raceForm.value.ponies;
+        this.service.updateRace(r);
+
     }
   }
-
 }
