@@ -26,6 +26,7 @@ import { PonyComponent } from './pony/pony.component'
 import { RaceComponent } from './race/race.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { PonyTransformPipe } from './pony-transform.pipe';
+import { AppService } from './app.service';
 
 
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'race/:id', component: RaceComponent},
   {path: 'updatePony/:id', component : PonyReactiveFormComponent},
   {path: 'updateRace/:id', component : RaceReactiveFormComponent},
+  {path: 'login', component : UserFormComponent}
 ];
 
 @NgModule({
@@ -67,7 +69,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
